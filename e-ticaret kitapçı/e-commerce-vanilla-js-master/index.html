@@ -1,0 +1,106 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Kitapçı</title>
+    <link rel="stylesheet" href="./assets/bootstrap/css/bootstrap.min.css" />
+    <link rel="stylesheet" href="./assets/toastr/toastr.min.css" />
+    <link rel="stylesheet" href="style.css" />
+  </head>
+  <body>
+    <nav class="navbar">
+      <h2 class="title">BookShop</h2>
+      <ul class="menu">
+        <li class="active">Kitaplar</li><!--rengini koyulaştırmak için active dedik-->
+        <li>AUDIOBOOKS</li>
+        <li>GIFTS</li>
+        <li>HAKKIMIZDA</li>
+      </ul>
+      <ul class="menu_icons">
+        <li><i class="bi bi-person"></i></li>
+        <li><i class="bi bi-search"></i></li>
+        <li class="basket__icon" onclick="toggleModal()"><!--sepet ürünü için tanımladık-->
+          <i class="bi bi-bag"></i>
+          <span class="basket__count"></span><!--sepette sağ altta gözüken ürün sayısı için bunu yapıyoruz-->
+        </li>
+        
+      </ul>
+
+    </nav>
+
+    <!--navbar ı gizleyip burayı section umaçtık bootstrap den section içindeki kısmını alarak animasyon oluşturmak istiyoruz-->
+    <section class="slider">
+      <div 
+        id="carouselExample" 
+        class="carousel slide">
+        <!--id kısmına kenimiz de isim verebiliriz verdikten sonra data bs target isimlerine de aynısını vermemiz gerek-->
+        <div class="carousel-inner">
+          <div class="carousel-item active">
+            <img src="./assets/images/slide1.png" class="d-block w-100" alt="online school">
+            <!--img src kısmına assets den ekli görselleri ekledik -->
+            <!--alt kısmı olursa resimin gösterilmesinde bir hata varsa ya da resim yüklenemezse ne metni gözüksün diye yapılıyor-->
+          </div>
+          <div class="carousel-item">
+            <img src="./assets/images/slide2.png" class="d-block w-100" alt="dünya çocuk kitap günü">
+          </div>
+          <div class="carousel-item">
+            <img src="./assets/images/slide3.png" class="d-block w-100" alt="sevgililer günü">
+          </div>
+        </div>
+        <button 
+          class="carousel-control-prev" 
+          type="button" 
+          data-bs-target="#carouselExample" 
+          data-bs-slide="prev">
+
+          <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+          <span class="visually-hidden">Previous</span>
+        </button>
+          <button class="carousel-control-next" type="button" data-bs-target="#carouselExample" data-bs-slide="next">
+            <span class="carousel-control-next-icon" aria-hidden="true"></span>
+            <span class="visually-hidden">Next</span>
+          </button>
+      </div>
+    </section>
+
+    <!--slider ı gizleyip yeni bir section açtık-->
+    <section class="store my-5 "><!--bootstrap in kütüphanesi mt-5 i yazarak resmin slider altına boşluk oluşturabiliriz-->
+      <!--store clasında içindekiler kısmı-->
+      <!--ikinci kitap eklemesinden sonra mt-5 i üsten alttan boşuk oluşturmak için my-5 dedik-->
+
+      <!--tür listesi-->
+      <div class="filter_background"></div>
+        <ul class="filter">
+          <li class="active">Tümü</li><!--önüne nokta alması için class active dedik-->
+          <li>ROMAN</li>
+          <li>Kişisel Gelişim</li>
+          <li>Fantastik</li>
+        </ul>
+
+        <div class="row book_list"></div>
+    </section>
+
+    <!--sepet sekmesi için-->
+    <div class="basket_modal">
+      <div class="basket_items">
+        <i class="bi bi-x" onclick="toggleModal()"></i><!--sepetin üzerindeki çarpı işaretinden kapatmak için onclick ekledik-->
+        <h2 class="basket_title">Sepetindekiler</h2>
+        <ul class="basket_list">
+          <li class="basket__item">Ürün bulunamadı lütfen ürün seçiniz.</li>
+        </ul>
+        <div class="basket_total">
+          <span class="fw-bold mb-2 fs-4 total_price"></span><!--mb-2 buttonla arasındaki boşluk, fs-4 kalınlığı-->
+          <button class="btn_purple">checkout</button>
+        </div>
+      </div>
+    </div>
+    <script
+      type="text/javascript"
+      src="assets/bootstrap/js/bootstrap.min.js"
+    ></script>
+    <script src="./assets/jquery/jquery.min.js"></script>
+    <script src="./assets/toastr/toastr.min.js"></script>
+    <script type="text/javascript" src="app.js"></script>
+  </body>
+</html>

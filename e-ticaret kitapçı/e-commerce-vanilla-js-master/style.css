@@ -1,0 +1,317 @@
+@import url("https://fonts.googleapis.com/css2?family=Montserrat:wght@400;700&family=Open+Sans&display=swap");
+@import url("https://cdn.jsdelivr.net/npm/bootstrap-icons@1.8.1/font/bootstrap-icons.css");
+* {
+  font-family: "Montserrat", sans-serif;
+  padding: 0;
+  margin: 0;
+}
+
+:root {
+  --black: #1c2a39;
+  --gray: #5c6a79;
+  --purple: #4c3db2;
+  --transition: all 250ms ease-in-out;/*çok fazla kullanacağimiz için burada tanımladık*/
+}
+
+.navbar{
+  height: 120px;
+  width: 80%;
+  margin-left: 10%;
+}
+
+/*kitaplar hediyerler kısmı ve person search kısmının yukarıdan aşağı değil soldan sağa olmasını istediğimiz için düzenleme*/
+.menu,.menu_icons{
+  list-style-type: none;
+  display: flex;
+  flex-direction: row;
+  font-size: 20px;
+  color: var(--gray);
+  cursor:pointer;/*bunlar menü tıklama eventi olduğundan mouse üzerine geldiğinde tıklama eventi olduğu gözükmesi için*/
+}/*soldan sağa dizim sağladık üst kısımda*/
+
+/*active gördüğümüz için renk veriyoruz color ile yetersiz kalan renk için font weight ile iyice vurgu yaptırdık*/
+.menu .active{
+  color: var(--black);
+  font-weight: bold;
+}
+
+/*yukarıda yaptığımızda soldan sağa yaptık ama aralarında boşluk yoktu boşluk eklemek için*/
+.menu li,.menu_icons li{
+  margin: 0 10px;/*0=üstten alttan 10px=soldan sağdan demek*/
+}
+
+.menu_icons li{
+  color:var(--black)/*iconların rengini belirginleştirmek için*/
+}
+
+.basket__icon{
+  position: relative;/*altta yaptığımız sepet ürünü için eğer bunu yapmazsak konumunu ayarlayamayız.relative yaparak kapsayıcı dışına çıkmasını engelleriz*/
+}
+.basket__count{/*sepetteki ürün işaretinin ayarları*/
+  position: absolute;/*ile konumunu nerde istiyorsak ona göre right bottom belirliyoruz bununla konumunu ayarlayabiliyoruz*/
+  right:-0.7rem;
+  bottom: 0;
+  width: 20px;
+  height: 20px;
+  background-color: var(--black);
+  border-radius: 50%;/*yuvarlak bir obje olması için*/
+
+  /*sepetteki daire içindeki sayı ayarları*/
+  color: white;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-size: 1rem;
+  font-weight: bold;
+}
+
+/*add basket e tıklanınca sepete ürün ekleme de sepet altındaki siyah top da oluşması istenen sayı için js*/
+.basket__count:empty{/*empty demek sepeyin içinde birşey yoksa displayını none yap diyoruz*/
+  display:none;
+}
+
+.slider{/*girişteki animasyon hareketini sayfaya eşitlemek için*/
+  width: 80%;
+  margin-left: auto;
+  margin-right:auto;
+  height: 600px;
+}
+
+.slider img{/*animasyonun içindeki resimler için*/
+  height: 600px;
+}
+
+.store{
+  width: 80%; /*kitap resimlerinin yanındaki yazılar için yakınlaştırma */
+  margin-left: 10%;/*kitap remi için soldan kaydırma*/
+  /*background-color: green;/*hemen slider resmin altına renk verdi biz bu rengin biraz daha altta olmasını istiyoruz bu yüzden:*/
+  /*margin-top: ; kullanrak slider altına boşluk yapabiliriz ya da html de store yanına mt-5 kütüphanesini yazarak*/
+  
+}
+
+.book_card{
+  height: 400px;/*yükseklik*/
+}
+
+.book_card img{
+  height: 400px;
+}
+
+.fos{
+  font-family: "Open Sans",sans-serif;
+}
+
+.gray{
+  color:var(--gray);
+}
+
+.black{
+  color: var(--black);
+}
+
+.fw-bold{
+  font-weight: bold;
+}
+
+.book_star-rate .bi-star,.bi-star-fill{
+  color: #eeedf5;
+  font-size: 1.2rem;
+  margin-right: 5px;
+}
+
+.book_star-rate .bi-star-fill.active{
+  color: #f2c94c;
+}
+
+.book_description{
+  display:-webkit-box;
+  -webkit-line-clamp: 4;/*açıklamalar kısmında satır sayısının 4 olmasını istiyoruz*/
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+  text-overflow: ellipsis;
+    /* height:100px ; mustafanın uğrastığı*/
+}
+
+.old_price{
+  text-decoration: line-through;/*yazı üzerinin çizili olması*/
+  color:#bdbdbd;
+}
+
+.btn_purple{
+  cursor: pointer;/*fare ile tıklanabilir old.*/
+  border: 2px solid var(--purple);
+  color: var(--purple);
+  font-size: 1rem;
+  font-weight: bold;
+  background-color: transparent;
+  transition: var(--transition);
+  padding: 5px 0;
+}
+
+.btn_purple:hover{
+  background-color: var(--purple);
+  color: white;
+}
+
+.filter_background{
+  position: absolute;
+  left: 0;
+  width: 600px;
+  height: 900px;
+  background-color: #efeef6;
+  z-index: -1;/*arka planda gözükmesi için*/
+}
+
+.filter{
+  position: absolute;
+  list-style-type: none;/*fare hareketini algılaması için*/
+  display: flex;
+  flex-direction: column;
+  min-height: 650px;
+  justify-content: center;
+
+}
+
+.filter li{
+  color: var(--gray);
+  font-size: 1rem;/*aralarına boşluk*/
+  margin-bottom: 2rem;
+  cursor: pointer;
+}
+
+.filter li:hover{
+  color: var(--purple);/*fare yazı üzerine geldiğinde rengi değişmesi için.*/
+}
+
+.filter li.active{
+  color: var(--purple);
+  font-size: 1.5rem;
+  font-weight: bold;
+}
+
+.filter li.active::before{/*noktanın özellikleri*/
+  content: "";
+  display: inline-block;/*tümü yazısının önüne nokta koydu*/
+  width: 10px;/*noktanın büyüklüğü*/
+  height: 10px;
+  border-radius: 50%;
+  background-color: var(--purple);
+  position: absolute;/*noktanın konumu için*/
+  left: -5px;
+  margin-top: 12px;
+}
+
+.basket_modal{
+  position: fixed;
+  opacity: 0;/*js den gelip yazdık*/
+  left: 0;
+  top: 0;
+  background-color: #5c6a7950;
+  width: 100%;
+  height: 100%;
+  z-index: -1;
+  transition: var(--transition);/*kapatıp açarken animasyonlu bir şekilde gelebilmesi için*/
+}
+
+.basket_modal.active{/*js den gelip yazdık*/
+  opacity: 1;
+  z-index: 999;
+}
+
+.basket_items{
+  position: relative;
+  width: 0;/*450px i çaliştımada kullanmak için 0 yaptık*/
+  background-color: white;
+  height: 100%;
+  float: right;
+  transition: var(--transition);/*anmasyonla gelip gidebilmesi için*/
+}
+
+.basket_modal.active .basket_items{/*üstte 450px i 0 a çevirmiştik burada sistem çalışırken active items e geldiğinde width ini 450px yapmasını istiyoruz.*/
+  width: 450px;
+}
+
+.basket_items .bi-x{
+  position: absolute;
+  left: 0;
+  top: 0;
+  font-size: 3rem;
+  color:var(--black);
+  cursor: pointer;  
+}
+
+.basket_title{/*sepetim yazısının konumu için*/
+  color: #1c2a39;
+  margin-top: 5rem;
+  text-align: center;
+  font-weight: bold;
+}
+
+.basket_list{
+  list-style-type: none;
+  padding: 0 10px;
+  margin-top: 3rem;
+  max-height: 650px;
+  overflow-y: auto;/*ekranda asağı yukarı kaydırma imleci*/
+}
+
+.basket__item{/*resim altındakileri yazıları sağ tarafa aldık*/
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 2rem; /*sepetteki kitaplar arasındaki boşluk*/
+}
+
+.basket_item-info{
+  width: 250px;
+}
+
+.basket_item-info .book_name{
+  font-size: 16px;
+  font-weight: bold;
+}
+
+.basket_item-info .book_price{
+  font-size: 16px;
+}
+
+.basket_item-info .book_remove{
+  cursor: pointer;
+  color: var(--gray);
+}
+
+.basket__item .book_count{
+  font-size: 1.5rem;
+  font-weight: bold;
+  color: var(--black);
+}
+
+.book_count .decrease{/*- ve + işaretlerinin ortadaki sayıya uzaklığı*/
+  margin-right: 5px;
+}
+.book_count .increase{
+  margin-left: 5px;
+}
+
+
+.book_count .decrease, .increase{
+  cursor: pointer;/*fareyi algılasın diye*/
+  color: var(--purple);
+}
+
+.basket_total{
+  position: absolute;
+  display: flex;
+  flex-direction: column;
+  bottom: 3%;/*checkout buttonunu yukarı aldı*/
+  align-items: center;
+  width: inherit;
+}
+
+.basket_total button{
+  width: 250px;
+}
+
+.total_price:empty + .btn_purple{
+  display: none;
+}
